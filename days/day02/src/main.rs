@@ -94,7 +94,7 @@ mod tests {
         input = { "2x3x4", "1x1x10" },
         expected = { 58, 43 }
     )]
-    fn test_part_1(input: &str, expected: usize) {
+    fn day02_test_part_1(input: &str, expected: usize) {
         let present = Present::from_str(input);
         assert_eq!(present.paper_needed(), expected);
     }
@@ -103,7 +103,7 @@ mod tests {
         input = { "2x3x4", "1x1x10" },
         expected = { 34, 14 }
     )]
-    fn test_part_2(input: &str, expected: usize) {
+    fn day02_test_part_2(input: &str, expected: usize) {
         let present = Present::from_str(input);
         assert_eq!(present.ribbon_needed(), expected);
     }

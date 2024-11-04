@@ -35,7 +35,7 @@ mod tests {
         input = { "(())", "()()", "(((", "(()(()(", "))(((((", "())", "))(", ")))", ")())())"},
         expected = { 0, 0, 3, 3, 3, -1, -1, -3, -3}
     )]
-    fn test_part_1(input: &str, expected: i32) {
+    fn day01_test_part_1(input: &str, expected: i32) {
         assert_eq!(end_level(input), expected);
     }
 
@@ -43,7 +43,7 @@ mod tests {
         input = { ")", "()())" },
         expected = { 1, 5 }
     )]
-    fn test_part_2(input: &str, expected: usize) {
+    fn day01_test_part_2(input: &str, expected: usize) {
         assert_eq!(position_of(-1, input), expected);
     }
 }
