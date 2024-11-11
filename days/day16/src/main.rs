@@ -72,25 +72,11 @@ impl From<String> for Aunts {
 }
 
 impl Aunts {
-    fn find_sue_gen(&self, properties: &HashMap<String, u32>) -> &Sue {
-        self.sues
-            .iter()
-            .find(|sue| sue.match_props(properties))
-            .unwrap()
-    }
-
-    fn find_sue(&self, properties: &HashMap<String, u32>) -> &Sue {
-        self.sues
-            .iter()
-            .find(|sue| sue.match_props(properties))
-            .unwrap()
-    }
-
-    fn find_sue_v2(&self, properties: &HashMap<String, u32>) -> &Sue {
-        self.sues
-            .iter()
-            .find(|sue| sue.match_props_v2(properties))
-            .unwrap()
+    fn find_sue<F>(&self, matcher: F) -> &Sue
+    where
+        F: FnMut(&&Sue) -> bool,
+    {
+        self.sues.iter().find(matcher).unwrap()
     }
 }
 
@@ -108,6 +94,16 @@ fn main() {
     properties.insert("trees".to_string(), 3);
     properties.insert("cars".to_string(), 2);
     properties.insert("perfumes".to_string(), 1);
-    println!("Part 1 = {}", aunts.find_sue(&properties).number);
-    println!("Part 2 = {}", aunts.find_sue_v2(&properties).number);
+    println!(
+        "Part 1 = {}",
+        aunts
+            .find_sue(|sue: &&Sue| sue.match_props(&properties))
+            .number
+    );
+    println!(
+        "Part 2 = {}",
+        aunts
+            .find_sue(|sue: &&Sue| sue.match_props_v2(&properties))
+            .number
+    );
 }
